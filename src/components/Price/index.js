@@ -8,22 +8,25 @@ import {
   Img,
   InputRightElement,
   Select,
+  Divider,
+  Center,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import search from "../../assets/search.svg";
 import Body from "./Body";
 function Price() {
+  const [inputText, setInputText] = useState();
   const data = JSON.parse(localStorage.getItem("webData"));
+  const handleInput = (e) => {
+    setInputText(e.target.value);
+  };
   return (
     <Box p={{ base: "10px 0px 0px", md: "30px 0px 60px" }}>
       <Box p={{ base: "0px 5%", md: "0px 16.7%" }} w="100%">
         {/* m={{ base: "86px 0px", md: "155px 0px 90px" }} */}
         <Box>
-          <Flex
-            justifyContent="space-between"
-            display={{ base: "none", md: "flex" }}
-          >
-            <Box>
+          <Flex justifyContent="space-between">
+            <Box display={{ base: "none", md: "flex" }}>
               <Text
                 fontSize="34px"
                 fontWeight="700"
@@ -37,20 +40,36 @@ function Price() {
                 {data.pageProps.page.header.text.replace(/(<([^>]+)>)/gi, "")}
               </Text>
             </Box>
-            <Box mb="60px">
-              <InputGroup w="443px">
+            <Box mb={{ base: "30px", md: "60px" }} maxW="100%">
+              <InputGroup
+                w="443px"
+                maxW="100%"
+                borderColor="rgb(231, 231, 240)"
+              >
                 <InputLeftElement
                   pointerEvents="none"
                   children={<Img src={search} alt="search" />}
-                  h="58px"
+                  h={"58px"}
+                  display={{ base: "none", md: "block" }}
                 />
                 <Input
+                  fontSize={"13px"}
                   borderRadius="0px"
                   placeholder="მოძებნეთ კრიპტოვალუტა"
-                  h="58px"
+                  _placeholder={{
+                    color: "rgb(183, 184, 206) !important",
+                  }}
+                  onChange={handleInput}
                 />
+
                 <InputRightElement width="5em" h="100%" m="0" p="0">
-                  <Select h="58px" border="none">
+                  <Divider orientation="vertical" h="50%" />{" "}
+                  <Select
+                    h={{ base: "40px", md: "58px" }}
+                    border="none"
+                    fontSize={{ base: "14px", md: "18px" }}
+                    color="rgb(183, 184, 206) !important"
+                  >
                     <option value="Gel">Gel</option>
                     <option value="Usd">Usd</option>
                     <option value="Eur">Eur</option>
@@ -59,7 +78,7 @@ function Price() {
               </InputGroup>
             </Box>
           </Flex>
-          <Body />
+          <Body inputText={inputText} />
         </Box>
       </Box>
     </Box>

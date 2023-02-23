@@ -1,32 +1,26 @@
 import { Flex, Text, Box, Img, Spinner } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import arrowUp from "../../assets/caret-top-small.svg";
 import arrowDown from "../../assets/caret-bottom-small.svg";
 import CoinInfo from "./CoinInfo";
-function Body() {
-  const [data, setData] = useState(null);
+import { useSelector } from "react-redux";
+function Body({ inputText }) {
+  const data = useSelector((state) => state.data.pageProps.coins);
   const labels = [
     { label: "Coin name", procent: { base: "1 1 22%", md: "1 1 19%" } },
     { label: "Last price", procent: { base: "1 1 40%", md: "1 1 11%" } },
     { label: "Volume", procent: { base: "1 1 40%", md: "1 1 11%" } },
     { label: "24H", procent: { base: "1 1 20%", md: "1 1 20%" } },
   ];
-
-  useEffect(() => {
-    // fetch(
-    //   "https://exchange.cryptal.com/exchange/api/v1/public/landing/coins?quote=USD"
-    // )
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     setData(data);
-    //   });
-    const data = localStorage.getItem("webData");
-    setData(JSON.parse(data).pageProps.coins);
-  }, []);
-
   if (!data) {
     return <Spinner color="#4a6dff" />;
   }
+
+  const filteredData = data.filter((item) =>
+    inputText
+      ? item.currencyName.toLowerCase().includes(inputText.toLowerCase())
+      : item
+  );
   return (
     <Box maxW="100%">
       <Flex alignItems="center">
@@ -56,7 +50,7 @@ function Body() {
         <Flex w="54px" py="10px" display={{ base: "none", md: "flex" }} />
       </Flex>
       <Box>
-        {data.map((item) => (
+        {filteredData.map((item) => (
           <CoinInfo
             key={item.currencyName}
             content={item.content}

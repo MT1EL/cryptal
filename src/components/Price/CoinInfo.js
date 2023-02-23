@@ -276,6 +276,9 @@ function CoinInfo({
           circulatingSupply={circulatingSupply}
           issueDate={issueDate}
           content={content}
+          webSite={webSite}
+          whitePaper={whitePaper}
+          explorer={explorer}
         />
       </AccordionItem>
     </Accordion>

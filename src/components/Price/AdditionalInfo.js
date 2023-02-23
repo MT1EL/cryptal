@@ -12,21 +12,24 @@ const AdditionalInfo = ({
   currencyCode,
   content,
 }) => {
+  const data = JSON.parse(localStorage.getItem("webData"));
+  const infoTitles = data.pageProps.page.infoTitles;
+  const resultArr = [totalSupply, circulatingSupply, issueDate];
+
   return (
     <Box>
       <Box pb="4px">
-        <Flex fontSize="16px" lineHeight="28px" color="rgb(108, 118, 134)">
-          <Text>ჯამური მიწოდება: </Text>
-          <Text> {totalSupply}</Text>
-        </Flex>
-        <Flex fontSize="16px" lineHeight="28px" color="rgb(108, 118, 134)">
-          <Text>მიმოქცევაშია: </Text>
-          <Text> {circulatingSupply}</Text>
-        </Flex>
-        <Flex fontSize="16px" lineHeight="28px" color="rgb(108, 118, 134)">
-          <Text>შეიქმნა: </Text>
-          <Text> {issueDate}</Text>
-        </Flex>
+        {infoTitles.map((item, index) => (
+          <Flex
+            key={item.description}
+            fontSize="16px"
+            lineHeight="28px"
+            color="rgb(108, 118, 134)"
+          >
+            <Text>{item.description}: </Text>
+            <Text> {resultArr[index]}</Text>
+          </Flex>
+        ))}
       </Box>
       <Flex fontSize="16px" lineHeight="28px" color="rgb(108, 118, 134)">
         {content.description

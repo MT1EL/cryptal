@@ -6,12 +6,17 @@ import {
   Img,
   Box,
   Text,
-  Spinner,
+  Link,
+  Button,
 } from "@chakra-ui/react";
 import React from "react";
 import arrowUp from "../../assets/arrow-up-green.svg";
+import arrowDown from "../../assets/arrow-down-red.svg";
 import close_icon from "../../assets/close_icon.svg";
 import Chart from "react-apexcharts";
+import doc from "../../assets/doc.svg";
+import wrld from "../../assets/wrld.svg";
+import chartUp from "../../assets/chartUp.svg";
 const lang = window.location.pathname.slice(1, 3);
 const CoinModal = ({
   isOpen,
@@ -25,7 +30,12 @@ const CoinModal = ({
   circulatingSupply,
   issueDate,
   content,
+  webSite,
+  whitePaper,
+  explorer,
 }) => {
+  const buttonLabel = JSON.parse(localStorage.getItem("webData")).pageProps.page
+    .btnName;
   const data = [
     {
       ka: "ჯამური მიწოდება",
@@ -58,9 +68,6 @@ const CoinModal = ({
     },
 
     chart: {
-      toolbar: {
-        show: false,
-      },
       sparkline: {
         enabled: false,
       },
@@ -71,6 +78,9 @@ const CoinModal = ({
         enabled: false,
         target: undefined,
         autoScaleYaxis: false,
+      },
+      toolbar: {
+        show: false,
       },
     },
 
@@ -84,7 +94,8 @@ const CoinModal = ({
         show: false,
       },
     },
-    colors: ["#08aa7d"],
+    colors:
+      change === "0.00" ? ["#000000"] : change < 0 ? ["#f04a6a"] : ["#08aa7d"],
     height: "350",
     markers: {
       size: 0,
@@ -106,6 +117,11 @@ const CoinModal = ({
       curve: "smooth",
     },
   };
+  const buttonData = [
+    { image: wrld, label: "website", href: webSite },
+    { image: doc, label: "White Paper", href: whitePaper },
+    { image: chartUp, label: "Block Explorer", href: explorer },
+  ];
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="full">
@@ -153,8 +169,31 @@ const CoinModal = ({
                     justifyContent={"flex-end"}
                     fontWeight="700"
                   >
-                    <Img src={arrowUp} alt="arrow " h="9px" mr="2px" />
-                    <Text color="rgb(6, 183, 135)">{change} %</Text>
+                    <Img
+                      src={arrowUp}
+                      alt="arrow "
+                      h="9px"
+                      mr="2px"
+                      display={change > 0 ? "block" : "none"}
+                    />
+                    <Img
+                      src={arrowDown}
+                      alt="arrow "
+                      h="9px"
+                      mr="2px"
+                      display={change < 0 ? "block" : "none"}
+                    />
+                    <Text
+                      color={
+                        change === "0.00"
+                          ? "#000000"
+                          : change < 0
+                          ? "#f04a6a"
+                          : "#08aa7d"
+                      }
+                    >
+                      {change} %
+                    </Text>
                   </Flex>
                 </Box>
                 <Box
@@ -179,7 +218,12 @@ const CoinModal = ({
             </Flex>
           </Flex>
         </Flex>
-        <Box my="20px">
+        <Box
+          my="20px"
+          fontSize="12px"
+          lineHeight="17px"
+          color="rgb(108, 118, 134)"
+        >
           {data.map((item, index) => (
             <Flex key={index}>
               <Text fontWeight={"600"}>
@@ -189,11 +233,44 @@ const CoinModal = ({
             </Flex>
           ))}
         </Box>
-        <Text>
-          {content.description
-            .replace(/(<([^>]+)>)/gi, " ")
-            .replace(/&nbsp;/g, "")}
-        </Text>
+        <Box m="0 0 22px" h="calc(100vh - 423px)" overflow={"hidden"}>
+          <Text
+            m="unset"
+            fontSize="12px"
+            lineHeight="17px"
+            color="rgb(108, 118, 134)"
+          >
+            {content.description
+              .replace(/(<([^>]+)>)/gi, " ")
+              .replace(/&nbsp;/g, "")}
+          </Text>
+        </Box>
+        <Flex mb="26px" justifyContent={"space-between"}>
+          {buttonData.map((item) => (
+            <Link
+              color="rgb(74, 109, 255)"
+              key={item.label}
+              textDecoration={"none"}
+              href={item.href}
+              target="_blank"
+            >
+              <Button variant="ghost" fontSize="12px" maxH="42px" px="0">
+                <Img src={item.image} alt="world icon" mr="4px" />
+                {item.label}
+              </Button>
+            </Link>
+          ))}
+        </Flex>
+        <Button
+          fontSize={"12px"}
+          maxHeight="42px"
+          p="12px 30px"
+          bg="rgb(234, 238, 255)"
+          color="rgb(74, 109, 255)"
+          borderRadius={"0"}
+        >
+          {buttonLabel.buyNow}
+        </Button>
       </ModalContent>
     </Modal>
   );
