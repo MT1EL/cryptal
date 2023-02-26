@@ -10,6 +10,7 @@ import {
   DrawerContent,
   Divider,
   Box,
+  Link,
 } from "@chakra-ui/react";
 import logo from "../assets/logo.svg";
 import checkMark from "../assets/small-blue-checkmark.svg";
