@@ -3,7 +3,6 @@ import React from "react";
 import Container from "../Container";
 
 function Solution({ data }) {
-  console.log(data);
   return (
     <Flex
       bg="rgb(16, 16, 34)"

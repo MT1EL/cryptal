@@ -19,7 +19,6 @@ function Body({ localTags, tagsFilteredData }) {
   if (data.length === 0) {
     return <Spinner />;
   }
-  console.log(tagsFilteredData);
   const filteredData =
     tagsFilteredData.length > 0
       ? tagsFilteredData

@@ -4,7 +4,6 @@ import Container from "../Container";
 import SupportBoxes from "./SupportBoxes";
 
 function Support({ data }) {
-  console.log(data);
   return (
     <Box p={{ base: "34px 0%", md: "100px 0px" }} bg="rgb(244, 248, 251)">
       <Container>

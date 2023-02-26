@@ -3,7 +3,6 @@ import React from "react";
 import Container from "../Container";
 
 function Contact({ contact }) {
-  console.log(contact);
   return (
     <Box bg="rgb(244, 248, 251)" p={{ base: "34px 0%", md: "100px 0%" }}>
       <Container>

@@ -18,7 +18,6 @@ function AboutUs() {
   if (!data) {
     return <Spinner />;
   }
-  console.log(data);
   return (
     <Box maxW="100%" overflowX="hidden">
       <Header header={data.header} />

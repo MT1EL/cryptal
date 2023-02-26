@@ -20,7 +20,6 @@ function Service() {
     return <Spinner />;
   }
   const dataPageProps = serviceData.pageProps.page;
-  console.log(dataPageProps.contactUs);
   return (
     <Box>
       <Header data={dataPageProps.header} />
