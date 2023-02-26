@@ -11,6 +11,7 @@ import Blog from "./components/Blog";
 import Home from "./components/Home";
 import WithSubnavigation from "./components/Navbar";
 import Price from "./components/Price";
+import AboutUs from "./components/AboutUs";
 import { setData } from "./actions/setDataAction";
 import { SET_DATA } from "./actionTypes";
 function App() {
@@ -38,6 +39,7 @@ function App() {
           <Route path="/:lang?" element={<Home />} />
           <Route path="/:lang?/markets" element={<Price />} />
           <Route path="/:lang?/blog" element={<Blog />} />
+          <Route path="/:lang?/about-us" element={<AboutUs />} />
         </Routes>
       </Router>
     </>

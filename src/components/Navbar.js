@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Img,
   Flex,
@@ -26,13 +26,21 @@ import { CHANGE_TO_ENGLISH, CHANGE_TO_GEORGIAN } from "../actionTypes";
 const lang = window.location.pathname.slice(1, 3);
 const pathname = window.location.pathname.slice(3);
 export default function WithSubnavigation() {
+  const [scrolled, setScrolled] = useState(false);
   const { isOpen, onClose, onToggle } = useDisclosure();
+  window.onscroll = function () {
+    if (window.pageYOffset > 50) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  };
 
   return (
     <>
       <Flex
         // bg={useColorModeValue("rgb(12, 16, 39)", "gray.800")}
-        bg="transparent"
+        bg={scrolled ? "rgb(12, 16, 39)" : "transparent"}
         color={useColorModeValue("gray.600", "white")}
         minH={"60px"}
         py={{ base: "17px", md: "36px" }}
