@@ -150,7 +150,9 @@ const DesktopNav = () => {
           href={
             navItem.href.slice(1, 3) !== "en" ||
             navItem.href.slice(1, 3) !== "ka"
-              ? `/en${navItem.href.slice(1)}`
+              ? navItem.target !== "_blank"
+                ? `/en${navItem.href.slice(1)}`
+                : navItem.href
               : navItem.href
           }
           key={navItem.label}

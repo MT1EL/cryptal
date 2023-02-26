@@ -12,7 +12,6 @@ function Blog() {
   const dispatch = useDispatch();
   const [choosedTag, setChoosedTag] = useState([]);
   const [localTags, setLocalTags] = useState();
-  // console.log(choosedTag);
   useEffect(() => {
     const defaultUrl = `https://content.cryptal.com/categories?_pick=name,id&_locale=${locale}`;
     fetch(defaultUrl)

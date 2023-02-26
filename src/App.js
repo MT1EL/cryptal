@@ -13,7 +13,7 @@ import WithSubnavigation from "./components/Navbar";
 import Price from "./components/Price";
 import AboutUs from "./components/AboutUs";
 import { setData } from "./actions/setDataAction";
-import { SET_DATA } from "./actionTypes";
+import Service from "./components/Services";
 function App() {
   const [lang, setLang] = useState(window.location.pathname.slice(1, 3));
   const state = useSelector((state) => state);
@@ -40,6 +40,7 @@ function App() {
           <Route path="/:lang?/markets" element={<Price />} />
           <Route path="/:lang?/blog" element={<Blog />} />
           <Route path="/:lang?/about-us" element={<AboutUs />} />
+          <Route path="/:lang?/services" element={<Service />} />
         </Routes>
       </Router>
     </>

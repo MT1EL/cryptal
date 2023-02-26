@@ -1,11 +1,12 @@
 import { Text, Box, Flex, Img } from "@chakra-ui/react";
 import React from "react";
+import Container from "../Container";
 
 function Contact({ contact }) {
   console.log(contact);
   return (
     <Box bg="rgb(244, 248, 251)" p={{ base: "34px 0%", md: "100px 0%" }}>
-      <Box p={{ base: "0px 5%", md: "0px 15%", lg: "0px 16.7%" }}>
+      <Container>
         <Text
           fontSize={{ base: "14px" }}
           lineHeight={{ base: "18px", md: "22px" }}
@@ -72,7 +73,7 @@ function Contact({ contact }) {
             </Box>
           </Flex>
         </Flex>
-      </Box>
+      </Container>
     </Box>
   );
 }

@@ -1,12 +1,13 @@
 import { Text, Box, Flex, Img, Button } from "@chakra-ui/react";
 import React from "react";
 import image from "../../assets/Future_0d6d2dd48d.svg";
+import Container from "../Container";
 function Body({ about, buildFuture }) {
   return (
     <Box p={{ base: "10px 0px 0px", md: "30px 0px 0px" }}>
       {/** LEARN MORE PART */}
       <Box p={{ base: "15px 0px 30px", md: "70px 0px 90px" }}>
-        <Box p={{ base: "0px 5%", md: "0px 15%", lg: "0px 16.7%" }}>
+        <Container>
           <Text
             fontSize={{ base: "14px", md: "22px" }}
             lineHeight="18px"
@@ -33,7 +34,7 @@ function Body({ about, buildFuture }) {
             // style={{ columnCount: "1" }}
             dangerouslySetInnerHTML={{ __html: about.text }}
           ></Box>
-        </Box>
+        </Container>
       </Box>
       {/** BUILD THE FUTURE PART */}
       <Flex
@@ -44,7 +45,7 @@ function Body({ about, buildFuture }) {
         // justifyContent="center"
         alignItems="center"
       >
-        <Box p={{ base: "0px 5%", md: "0px 15%", lg: "0px 16.7%" }}>
+        <Container>
           <Box
             p={{ base: "24px 18px 54px", md: "30px 0px 40px" }}
             display={{ md: "flex" }}
@@ -100,7 +101,7 @@ function Body({ about, buildFuture }) {
               </Button>
             </Flex>
           </Box>
-        </Box>
+        </Container>
       </Flex>
     </Box>
   );
