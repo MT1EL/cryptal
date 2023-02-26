@@ -15,6 +15,7 @@ import {
   DrawerOverlay,
   DrawerContent,
   Divider,
+  Box,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import logo from "../assets/logo.svg";
@@ -23,6 +24,10 @@ import checkMark from "../assets/small-blue-checkmark.svg";
 import { useDispatch } from "react-redux";
 import { changeToEng, changeToGeo } from "../actions/localeAction";
 import { CHANGE_TO_ENGLISH, CHANGE_TO_GEORGIAN } from "../actionTypes";
+import ge from "../assets/ge.png";
+import en from "../assets/en.png";
+import supportIcon from "../assets/Support_1bbb09d13e.svg";
+import hamburger from "../assets/hamburger_menu.svg";
 const lang = window.location.pathname.slice(1, 3);
 const pathname = window.location.pathname.slice(3);
 export default function WithSubnavigation() {
@@ -39,45 +44,44 @@ export default function WithSubnavigation() {
   return (
     <>
       <Flex
-        // bg={useColorModeValue("rgb(12, 16, 39)", "gray.800")}
         bg={scrolled ? "rgb(12, 16, 39)" : "transparent"}
         color={useColorModeValue("gray.600", "white")}
-        minH={"60px"}
-        py={{ base: "17px", md: "36px" }}
-        // lg: "16.7%"
-        px={{ base: "5%", md: "15%" }}
+        p={{ base: "17px 5%", md: "36px 15% 38px" }}
         w="100%"
         align={"center"}
         justifyContent="space-between"
         position={"fixed"}
         top="0"
-        zIndex={5}
+        zIndex={2}
+        transition="all 0.15s ease-in-out 0s"
       >
-        <Flex
-          flex={{ base: 1, md: "auto" }}
-          display={{ base: "flex", md: "none" }}
-        >
-          <IconButton
-            onClick={onToggle}
-            icon={
-              isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
-            }
-            variant={"ghost"}
-            aria-label={"Toggle Navigation"}
-          />
+        <Flex h="36px" alignItems="center">
+          <Flex
+            // flex={{ base: 1, md: "auto" }}
+            h="21.047px"
+            display={{ base: "flex", md: "none" }}
+          >
+            <Img
+              src={hamburger}
+              alt="hamburger icon "
+              onClick={onToggle}
+              h="16.500px"
+              opacity="0.8"
+            />
+          </Flex>
         </Flex>
-        <Flex>
+        <Flex alignItems="center">
           <Img
             src={logo}
             alt="logo"
             display={{ base: "none", md: "block" }}
-            w="169px"
+            w={{ md: "150px", "2xl": "169px" }}
           />
-          <Img
+          {/* <Img
             src={logoMobile}
             alt="logo mobile"
             display={{ base: "block", md: "none" }}
-          />
+          /> */}
           <Flex
             display={{ base: "none", md: "flex" }}
             alignItems="center"
@@ -87,49 +91,62 @@ export default function WithSubnavigation() {
           </Flex>
         </Flex>
 
-        <Stack
-          flex={{ base: 1, md: 0 }}
-          justify={"flex-end"}
-          direction={"row"}
-          spacing={6}
-        >
-          <Text
-            w="50px"
-            h="50px"
-            borderRadius="100%"
-            as="a"
-            href={
-              pathname === ""
-                ? lang === "ka"
-                  ? "/en"
-                  : "/ka"
-                : lang === "ka"
-                ? `/en${pathname}`
-                : `/ka${pathname}`
-            }
-          >
-            {lang === "ka" ? "en" : "ka"}
-          </Text>
-
-          <Button
-            as={"a"}
-            display={{ base: "none", md: "inline-flex" }}
-            fontSize={"sm"}
-            fontWeight={600}
-            color={"white"}
-            bg={"rgb(74, 109, 255)"}
-            h="50px"
-            p="0 40px"
-            borderRadius="0"
-            _hover={{
-              bg: "rgb(74, 109, 200)",
-            }}
-            href="https://auth.cryptal.com/auth/realms/GEX/protocol/openid-connect/auth?client_id=gex-service-public&response_type=code&redirect_uri=https%3A%2F%2Fge.cryptal.com%2Fex"
-            target={"_blank"}
-          >
-            შესვლა
-          </Button>
-        </Stack>
+        <Flex alignItems="center">
+          <Flex display={{ base: "none", md: "flex" }}>
+            <Box
+              pt="4px"
+              mx="15px"
+              as="a"
+              href={
+                pathname === ""
+                  ? lang === "ka"
+                    ? "/en"
+                    : "/ka"
+                  : lang === "ka"
+                  ? `/en${pathname}`
+                  : `/ka${pathname}`
+              }
+            >
+              <Img src={lang === "ka" ? en : ge} alt="country" />
+            </Box>
+          </Flex>
+          <Flex alignItems="center" h="28.391px">
+            <Box
+              mr={{ base: "0px", md: "28px" }}
+              as="a"
+              target="_blank"
+              href={
+                "https://landing-back-static.cryptal.com/Support_1bbb09d13e.svg"
+              }
+            >
+              <Img src={supportIcon} alt="support icon" maxW="24px" mr="10px" />
+            </Box>
+            <Box
+              as="a"
+              href="https://auth.cryptal.com/auth/realms/GEX/protocol/openid-connect/auth?client_id=gex-service-public&response_type=code&redirect_uri=https%3A%2F%2Fge.cryptal.com%2Fex"
+              target="_blank"
+            >
+              <Button
+                as={"a"}
+                display={{ base: "none", md: "inline-flex" }}
+                fontSize={"sm"}
+                fontWeight={600}
+                color={"white"}
+                bg={"rgb(74, 109, 255)"}
+                h="50px"
+                p="0 40px"
+                borderRadius="0"
+                _hover={{
+                  bg: "rgb(74, 109, 200)",
+                }}
+                href="https://auth.cryptal.com/auth/realms/GEX/protocol/openid-connect/auth?client_id=gex-service-public&response_type=code&redirect_uri=https%3A%2F%2Fge.cryptal.com%2Fex"
+                target={"_blank"}
+              >
+                შესვლა
+              </Button>
+            </Box>
+          </Flex>
+        </Flex>
       </Flex>
 
       <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
@@ -156,15 +173,16 @@ const DesktopNav = () => {
               : navItem.href
           }
           key={navItem.label}
-          outlineOffset="0px"
-          outline="0px"
-          target={navItem.target}
-          fontSize={"16px"}
+          cursor="pointer"
+          // fontSize={"16px"} real size
+          fontSize={"12px"}
+          lineHeight="21px"
           letterSpacing="0px"
+          color={linkColor}
+          transition="all 0.15s ease-in-out 0s, font-size 0s ease 0s"
           p="11px 0px"
           mx="16px"
-          lineHeight="21px"
-          color={linkColor}
+          target={navItem.target}
           _hover={{
             textDecoration: "none",
             color: linkHoverColor,

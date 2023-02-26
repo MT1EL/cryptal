@@ -51,6 +51,7 @@ function Header({ data }) {
               <Text
                 as="a"
                 href={data.buttonUrl}
+                target="_blank"
                 color={{ base: "rgb(74, 109, 255)", md: "#fff" }}
               >
                 {data.buttonName}

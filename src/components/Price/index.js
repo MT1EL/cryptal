@@ -22,11 +22,15 @@ function Price() {
   };
   return (
     <Box p={{ base: "10px 0px 0px", md: "30px 0px 60px" }}>
-      <Box p={{ base: "0px 5%", md: "0px 16.7%" }} w="100%">
+      <Box
+        p={{ base: "0px 5%", md: "0px 16.7%" }}
+        w="100%"
+        mt={{ base: "4em", md: "8em" }}
+      >
         {/* m={{ base: "86px 0px", md: "155px 0px 90px" }} */}
         <Box>
           <Flex justifyContent="space-between">
-            <Box display={{ base: "none", md: "flex" }}>
+            <Box display={{ base: "none", md: "flex" }} flexDirection="column">
               <Text
                 fontSize="34px"
                 fontWeight="700"
@@ -36,9 +40,14 @@ function Price() {
               >
                 {data.pageProps.page.header.tabTitle}
               </Text>
-              <Text fontSize="22px" color="rgb(124, 126, 168)" m="0">
-                {data.pageProps.page.header.text.replace(/(<([^>]+)>)/gi, "")}
-              </Text>
+              <Text
+                fontSize="22px"
+                color="rgb(124, 126, 168)"
+                m="0"
+                dangerouslySetInnerHTML={{
+                  __html: data.pageProps.page.header.text,
+                }}
+              ></Text>
             </Box>
             <Box mb={{ base: "30px", md: "60px" }} maxW="100%">
               <InputGroup
@@ -49,8 +58,7 @@ function Price() {
                 <InputLeftElement
                   pointerEvents="none"
                   children={<Img src={search} alt="search" />}
-                  h={"58px"}
-                  display={{ base: "none", md: "block" }}
+                  display={{ base: "none", md: "flex" }}
                 />
                 <Input
                   fontSize={"13px"}

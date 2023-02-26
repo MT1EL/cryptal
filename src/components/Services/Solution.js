@@ -58,6 +58,7 @@ function Solution({ data }) {
               as="a"
               href={data.buttonUrl}
               alignSelf="flex-start"
+              target="_blank"
             >
               {data.buttonName}
             </Button>

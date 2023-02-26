@@ -31,11 +31,13 @@ const AdditionalInfo = ({
           </Flex>
         ))}
       </Box>
-      <Flex fontSize="16px" lineHeight="28px" color="rgb(108, 118, 134)">
-        {content.description
-          .replace(/(<([^>]+)>)/gi, "")
-          .replace(/&nbsp;/g, "")}
-      </Flex>
+      <Flex
+        fontSize="16px"
+        lineHeight="28px"
+        color="rgb(108, 118, 134)"
+        dangerouslySetInnerHTML={{ __html: content.description }}
+      />
+
       <Flex mt="20px" alignItems={"center"} justifyContent="space-between">
         <Button
           fontSize="16px"

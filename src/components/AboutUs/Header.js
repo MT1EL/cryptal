@@ -56,6 +56,7 @@ function Header({ header }) {
               fontSize="14px"
               as="a"
               href={header.buttonUrl}
+              target="_blank"
             >
               {header.buttonName}
             </Button>

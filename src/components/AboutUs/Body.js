@@ -96,6 +96,7 @@ function Body({ about, buildFuture }) {
                 }}
                 as="a"
                 href={buildFuture.buttonUrl}
+                target="_blank"
               >
                 {buildFuture.buttonName}
               </Button>
