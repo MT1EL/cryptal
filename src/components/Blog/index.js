@@ -4,19 +4,17 @@ import { useDispatch, useSelector } from "react-redux";
 import homeBg from "../../assets/landingbG.svg";
 import Body from "./Body";
 import Navigate from "./Navigate";
-import { setNewsData } from "../../actions/newsDataAction";
+
 function Blog() {
   const locale = useSelector((state) => state.locale[0]);
   const [data, setData] = useState();
   const [tagsFilteredData, setTagsFilteredData] = useState();
-  const dispatch = useDispatch();
   const [choosedTag, setChoosedTag] = useState([]);
   const [localTags, setLocalTags] = useState();
   useEffect(() => {
     const defaultUrl = `https://content.cryptal.com/categories?_pick=name,id&_locale=${locale}`;
     fetch(defaultUrl)
       .then((res) => res.json())
-      // .then((data) => dispatch(setNewsData({ data })));
       .then((data) => setData(data));
   }, []);
   if (!data) {
@@ -27,7 +25,6 @@ function Blog() {
     <Box>
       <Box
         maxW="100vw"
-        // mt="-90px"
         position="relative"
         w="100vw"
         top="0"
@@ -37,10 +34,7 @@ function Blog() {
         bgPosition="center top"
         backgroundSize="cover"
       >
-        <Box
-          p={{ base: "72px 0px 54px", md: "155px 0px 55px" }}
-          // w={{ base: "100%", md: "unset" }}
-        >
+        <Box p={{ base: "72px 0px 54px", md: "155px 0px 55px" }}>
           <Box p={{ base: "0px 5%", md: "0px 15%" }}>
             <Box
               w={{ md: "60%" }}

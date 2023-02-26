@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import NewsCard from "./NewsCard";
 import more from "../../assets/more.png";
 import { useSelector } from "react-redux";
-function Body({ localTags, choosedTag, tagsFilteredData }) {
+function Body({ localTags, tagsFilteredData }) {
   const [data, setData] = useState([]);
   const [counter, setCounter] = useState(0);
   const locale = useSelector((state) => state.locale[0]);

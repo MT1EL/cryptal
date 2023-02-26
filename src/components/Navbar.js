@@ -2,13 +2,7 @@ import React, { useState } from "react";
 import {
   Img,
   Flex,
-  Text,
-  IconButton,
   Button,
-  Stack,
-  Collapse,
-  Icon,
-  Link,
   useColorModeValue,
   useDisclosure,
   Drawer,
@@ -17,9 +11,7 @@ import {
   Divider,
   Box,
 } from "@chakra-ui/react";
-import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import logo from "../assets/logo.svg";
-import logoMobile from "../assets/Logo_mobile.svg";
 import checkMark from "../assets/small-blue-checkmark.svg";
 import { useDispatch } from "react-redux";
 import { changeToEng, changeToGeo } from "../actions/localeAction";
